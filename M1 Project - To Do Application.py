@@ -31,28 +31,29 @@ while user_selection != 4:
             break
 
         elif user_selection == 1:
-            add_tasks = input("\nAdd a new task: ").capitalize().strip()
+            add_tasks = input("\nAdd a new task: ").title().strip()
             if add_tasks == "":
                 print("\nNo new task detected. Please try again.")
                 continue
             users_tasks.append(add_tasks)
+            print(f"\n{add_tasks} has been added to your to do list.")
             # print(f"Testing - user tasks = {users_tasks}")
 
         elif user_selection == 2:
             if users_tasks == []:
-                print("\nYour to do list is empty. Let's add something!")
+                print("\nYour to do list is empty. Let's add your first task!")
                 continue
             display_tasks()
 
         elif user_selection == 3:
             if not users_tasks:
                 #I learned how "not user_tasks:" is more efficent than "if users_tasks == []:"
-                print("\nYou have nothing to do.")
+                print("\nYour to do list is empty.")
                 continue
             try:
-                delete_task =int(input(f"\nEnter the index of the task you'd like to delete: ").strip()) - 1
+                delete_task =int(input(f"\nEnter the index of the task you'd like to delete starting at 1: ").strip()) - 1
                 if delete_task < 0:
-                    print(f"\n{delete_task} is not a valid number. Please try again.")
+                    print(f"\n{delete_task} is not a valid number. Please try again.\n")
                     continue
                 elif delete_task >= len(users_tasks):
                     print(f"\nTask #{delete_task + 1} does not exist. Please try again.")
@@ -65,6 +66,6 @@ while user_selection != 4:
                     print(f"\n{task_deleted} was removed from your list.")
                     display_tasks()
             except ValueError:
-                print("\nInvalid selection. please try again. 3")
+                print("\nInvalid selection. Please try again.")
     except ValueError:
         print("Invalid selection. Please pick a number 1-4.")
